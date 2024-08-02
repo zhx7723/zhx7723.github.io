@@ -11,10 +11,16 @@
     <content type="html"><![CDATA[<h3 id="1-CBOW（Continuous-Bag-of-Words）"><a href="#1-CBOW（Continuous-Bag-of-Words）" class="headerlink" title="1. CBOW（Continuous Bag of Words）"></a>1. CBOW（Continuous Bag of Words）</h3><p>CBOW模型的目标是通过上下文词（context words）来预测中心词（target word）。即给定一组上下文词，CBOW模型尝试预测位于这些上下文词中心的目标词。</p><h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><ul><li><strong>输入</strong>：上下文词的集合（一个窗口内的词）。</li><li><strong>输出</strong>：中心词。</li></ul><p>在训练过程中，CBOW模型会尝试最小化预测目标词的损失函数。假设有一个单词序列 𝑤1,𝑤2,…,𝑤𝑇<em>w</em>1,<em>w</em>2,…,<em>w**T</em>，对于每个单词 𝑤𝑡<em>w**t</em>，上下文词是 𝑤𝑡−𝑘,…,𝑤𝑡−1,𝑤𝑡+1,…,𝑤𝑡+𝑘<em>w**t</em>−<em>k</em>,…,<em>w**t</em>−1,<em>w**t</em>+1,…,<em>w**t</em>+<em>k</em>，其中 𝑘<em>k</em> 是窗口大小。</p><p>CBOW模型的训练可以通过以下步骤实现：</p><ol><li>对每个上下文词进行词嵌入（embedding）。</li><li>将这些嵌入向量进行平均或求和，得到一个固定长度的向量。</li><li>使用这个向量通过一个神经网络来预测中心词。</li><li>通过反向传播更新模型参数。</li></ol><h3 id="2-Skip-gram"><a href="#2-Skip-gram" class="headerlink" title="2. Skip-gram"></a>2. Skip-gram</h3><p>Skip-gram模型的目标是通过一个中心词来预测其周围的上下文词。与CBOW相反，Skip-gram模型尝试通过单个词来预测其前后的词。</p><h4 id="工作原理-1"><a href="#工作原理-1" class="headerlink" title="工作原理"></a>工作原理</h4><ul><li><strong>输入</strong>：中心词。</li><li><strong>输出</strong>：上下文词的集合。</li></ul><p>在训练过程中，Skip-gram模型会尝试最小化预测所有上下文词的损失函数。假设有一个单词序列 𝑤1,𝑤2,…,𝑤𝑇<em>w</em>1,<em>w</em>2,…,<em>w**T</em>，对于每个单词 𝑤𝑡<em>w**t</em>，Skip-gram模型会尝试预测上下文词 𝑤𝑡−𝑘,…,𝑤𝑡−1,𝑤𝑡+1,…,𝑤𝑡+𝑘<em>w**t</em>−<em>k</em>,…,<em>w**t</em>−1,<em>w**t</em>+1,…,<em>w**t</em>+<em>k</em>。</p><p>Skip-gram模型的训练可以通过以下步骤实现：</p><ol><li>对中心词进行词嵌入（embedding）。</li><li>使用这个嵌入向量通过一个神经网络来预测每个上下文词。</li><li>通过反向传播更新模型参数。</li></ol>]]></content>
     
     
+    <categories>
+      
+      <category>NLP Basics</category>
+      
+    </categories>
+    
     
     <tags>
       
-      <tag>NLP</tag>
+      <tag>NLP, Word2Vec</tag>
       
     </tags>
     
