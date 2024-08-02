@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zhx7723.github.io/images/W2V-NET.png">
 <meta property="article:published_time" content="2024-05-19T19:12:07.980Z">
-<meta property="article:modified_time" content="2024-08-02T21:07:29.457Z">
+<meta property="article:modified_time" content="2024-08-02T21:28:07.031Z">
 <meta property="article:author" content="Haoxue_Z">
 <meta property="article:tag" content="NLP">
 <meta property="article:tag" content="Word2Vec">
@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k words
+          1.6k words
         
       </span>
     
@@ -263,7 +263,7 @@
         
         
         
-          9 mins
+          14 mins
         
       </span>
     
@@ -377,6 +377,23 @@
 <li>投影层：在CBOW模型中对上下文词向量进行简单求和；在Skip-gram模型中，目标词的词向量直接用于预测上下文词的概率分布。</li>
 <li>输出层：输出层会计算词库中每一个词的概率，输入softmax函数进行归一化，得出最后的结果。</li>
 </ul>
+<p>由于softmax需要我们遍历整个词库每个词语（类）并计算一遍输出概率并进行归一化，计算开销过大，这里使用树结构优化加速训练过程</p>
+<h4 id="Optimization-1-分层softmax"><a href="#Optimization-1-分层softmax" class="headerlink" title="Optimization 1: 分层softmax"></a>Optimization 1: 分层softmax</h4><p>分层Softmax是一种高效的替代标准Softmax函数的方法，适用于具有大量类别输出的神经网络，尤其是在处理大词汇量的语言模型时。分层Softmax的主要作用是降低计算Softmax层在大输出空间（如大词汇量语言模型）中的计算成本。通过将输出类别（例如词汇表中的单词）组织成二叉树（哈夫曼树）的结构，它能有效减少计算复杂度。</p>
+<p>分层Softmax的工作原理如下：</p>
+<ol>
+<li><p><strong>树结构</strong>：分层Softmax将类别组织成一棵二叉树，而不是同时考虑所有类别。树中的每个内部节点代表一个二元决策，这些决策最终指向特定的类别。</p>
+</li>
+<li><p><strong>路径概率</strong>：一个类别的概率是从根节点到表示该类别的叶子节点路径上所作决策概率的乘积。</p>
+</li>
+<li><p><strong>减少计算量</strong>：在标准Softmax中，计算每个类别的概率需要对所有类别进行归一化，而在分层Softmax中，只需要计算路径上的概率乘积，大大减少了计算量。</p>
+</li>
+</ol>
+<h5 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h5><p>在分层Softmax中，假设类别树的根节点为0，类别 ( w ) 的路径为 ( (n_1, n_2, \ldots, n_L) )，其中每个 ( n_i ) 是路径上的节点，路径长度为 ( L )。类别 ( w ) 的概率可以表示为路径上各节点决策概率的乘积：</p>
+<p>[<br>P(w \mid \text{context}) &#x3D; \prod_{i&#x3D;1}^{L} P(n_i \mid \text{parent}(n_i))<br>]</p>
+<p>其中， ( P(n_i \mid \text{parent}(n_i)) ) 是从节点的父节点选择 ( n_i ) 的概率，这通常使用Sigmoid函数来表示：</p>
+<p>[<br>P(n_i \mid \text{parent}(n_i)) &#x3D; \sigma(v_{n_i} \cdot h)<br>]</p>
+<p>其中，( v_{n_i} ) 是节点 ( n_i ) 的向量表示，( h ) 是上下文的隐藏层表示，( \sigma ) 是Sigmoid激活函数：</p>
+<p>[<br>\sigma(x) &#x3D; \frac{1}{1 + e^{-x}}<br>]</p>
 
                 
               </div>
