@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zhx7723.github.io/images/W2V-NET.png">
 <meta property="article:published_time" content="2024-05-19T19:12:07.980Z">
-<meta property="article:modified_time" content="2024-08-02T21:51:11.182Z">
+<meta property="article:modified_time" content="2024-08-02T22:00:38.215Z">
 <meta property="article:author" content="Haoxue_Z">
 <meta property="article:tag" content="NLP">
 <meta property="article:tag" content="Word2Vec">
@@ -313,14 +313,14 @@
             
               <div class="markdown-body">
                 
-                <h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h3><p><strong>Word2Vec模型</strong>: word2vec是一种可以将词转换为向量表示的方法 ，但是词的向量表示只是模型训练的副产物，真正意义上的word2vec模型的训练目标是两种不同的词预测方法，对应两种不同的模型：</p>
+                <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p><strong>Word2Vec模型</strong>: word2vec是一种可以将词转换为向量表示的方法 ，但是词的向量表示只是模型训练的副产物，真正意义上的word2vec模型的训练目标是两种不同的词预测方法，对应两种不同的模型：</p>
 <ul>
 <li><strong>CBOW（Continuous Bag of Words）模型</strong>：基于周边词预测当前词。</li>
 <li><strong>Skip-gram模型</strong>：基于当前词预测周边词</li>
 </ul>
 <p><strong>Embedding向量</strong>本质上是模型为了完成词预测任务而学习到的词语的低维表示。在训练过程中，这些向量被调整以最小化预测误差。最终，模型不仅能够完成词预测任务，还生成了有意义的词向量。</p>
 <p>以CBOW模型举个例子，在句子”the black cat sits on the mat”中，假设上下文参数<em>window size</em>&#x3D;3时，CBOW模型根据上下文<em>context(sits)</em> &#x3D; {“the”, “black”, “cat”, “on”, “the”, “map”}预测目标词”sits”。反之，Skip-gram模型则会根据词”sits”预测其上下文*context(sits)*。这两个个例子的基本原理将会在后续部分以公式呈现。</p>
-<h3 id="2-CBOW（Continuous-Bag-of-Words）"><a href="#2-CBOW（Continuous-Bag-of-Words）" class="headerlink" title="2. CBOW（Continuous Bag of Words）"></a>2. CBOW（Continuous Bag of Words）</h3><p>CBOW模型的目标是通过上下文词（context words）来预测中心词（target word）。即给定一组上下文词，CBOW模型尝试预测位于这些上下文词中心的目标词。</p>
+<h2 id="2-CBOW（Continuous-Bag-of-Words）"><a href="#2-CBOW（Continuous-Bag-of-Words）" class="headerlink" title="2. CBOW（Continuous Bag of Words）"></a>2. CBOW（Continuous Bag of Words）</h2><p>CBOW模型的目标是通过上下文词（context words）来预测中心词（target word）。即给定一组上下文词，CBOW模型尝试预测位于这些上下文词中心的目标词。</p>
 <p>回到上述例子的内容”the black cat sits on the mat”，这里将使用不同的符号表示句子中的每个词</p>
 <table>
 <thead>
@@ -356,7 +356,7 @@
 <li>使用这个向量通过一个神经网络来预测中心词。</li>
 <li>通过反向传播更新模型参数。</li>
 </ol>
-<h3 id="3-Skip-gram"><a href="#3-Skip-gram" class="headerlink" title="3. Skip-gram"></a>3. Skip-gram</h3><p>Skip-gram模型的目标是通过一个中心词来预测其周围的上下文词。与CBOW相反，Skip-gram模型尝试通过单个词来预测其前后的词。</p>
+<h2 id="3-Skip-gram"><a href="#3-Skip-gram" class="headerlink" title="3. Skip-gram"></a>3. Skip-gram</h2><p>Skip-gram模型的目标是通过一个中心词来预测其周围的上下文词。与CBOW相反，Skip-gram模型尝试通过单个词来预测其前后的词。</p>
 <h4 id="工作原理-1"><a href="#工作原理-1" class="headerlink" title="工作原理"></a>工作原理</h4><ul>
 <li><strong>输入</strong>：中心词。</li>
 <li><strong>输出</strong>：上下文词的集合。</li>
@@ -370,7 +370,7 @@
 <li>使用这个嵌入向量通过一个神经网络来预测每个上下文词。</li>
 <li>通过反向传播更新模型参数。</li>
 </ol>
-<h3 id="4-Architecture-and-optimization"><a href="#4-Architecture-and-optimization" class="headerlink" title="4. Architecture and optimization"></a>4. Architecture and optimization</h3><p><img src="/images/W2V-NET.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="4-Architecture-and-optimization"><a href="#4-Architecture-and-optimization" class="headerlink" title="4. Architecture and optimization"></a>4. Architecture and optimization</h2><p><img src="/images/W2V-NET.png" srcset="/img/loading.gif" lazyload></p>
 <p>这里以类似的神经网络语言模型为例，上图中，$w$表示词库中的词，$C$表示词的向量表示，$tanh$为激活函数，网络的结构主要由三部分组成：</p>
 <ul>
 <li>输入层：输入层的输出为词向量，在CBOW模型中输出的为上下文的词向量，在Skip-gram模型中输出的为中间词的词向量。词向量作为模型参数在训练开始时会随机初始化，随着模型的训练更新</li>
@@ -486,6 +486,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/08/02/TextClassification/" title="TextClassification">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">TextClassification</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
