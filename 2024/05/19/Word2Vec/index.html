@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zhx7723.github.io/images/W2V-NET.png">
 <meta property="article:published_time" content="2024-05-19T19:12:07.980Z">
-<meta property="article:modified_time" content="2024-08-02T21:28:07.031Z">
+<meta property="article:modified_time" content="2024-08-02T21:30:49.621Z">
 <meta property="article:author" content="Haoxue_Z">
 <meta property="article:tag" content="NLP">
 <meta property="article:tag" content="Word2Vec">
@@ -388,12 +388,12 @@
 <li><p><strong>减少计算量</strong>：在标准Softmax中，计算每个类别的概率需要对所有类别进行归一化，而在分层Softmax中，只需要计算路径上的概率乘积，大大减少了计算量。</p>
 </li>
 </ol>
-<h5 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h5><p>在分层Softmax中，假设类别树的根节点为0，类别 ( w ) 的路径为 ( (n_1, n_2, \ldots, n_L) )，其中每个 ( n_i ) 是路径上的节点，路径长度为 ( L )。类别 ( w ) 的概率可以表示为路径上各节点决策概率的乘积：</p>
-<p>[<br>P(w \mid \text{context}) &#x3D; \prod_{i&#x3D;1}^{L} P(n_i \mid \text{parent}(n_i))<br>]</p>
-<p>其中， ( P(n_i \mid \text{parent}(n_i)) ) 是从节点的父节点选择 ( n_i ) 的概率，这通常使用Sigmoid函数来表示：</p>
-<p>[<br>P(n_i \mid \text{parent}(n_i)) &#x3D; \sigma(v_{n_i} \cdot h)<br>]</p>
-<p>其中，( v_{n_i} ) 是节点 ( n_i ) 的向量表示，( h ) 是上下文的隐藏层表示，( \sigma ) 是Sigmoid激活函数：</p>
-<p>[<br>\sigma(x) &#x3D; \frac{1}{1 + e^{-x}}<br>]</p>
+<h5 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h5><p>在分层Softmax中，假设类别树的根节点为0，类别 $w$ 的路径为 $(n_1, n_2, \ldots, n_L) $，其中每个 $ n_i $ 是路径上的节点，路径长度为 $L $。类别 $ w $ 的概率可以表示为路径上各节点决策概率的乘积：</p>
+<p>$$<br>P(w \mid \text{context}) &#x3D; \prod_{i&#x3D;1}^{L} P(n_i \mid \text{parent}(n_i))<br>$$</p>
+<p>其中， $P(n_i \mid \text{parent}(n_i)) $是从节点的父节点选择 $ n_i $ 的概率，这通常使用Sigmoid函数来表示：</p>
+<p>$$<br>P(n_i \mid \text{parent}(n_i)) &#x3D; \sigma(v_{n_i} \cdot h)<br>$$</p>
+<p>其中，$v_{n_i}$ 是节点$ n_i $的向量表示，$ h $ 是上下文的隐藏层表示，$\sigma $ 是Sigmoid激活函数：</p>
+<p>$$<br>\sigma(x) &#x3D; \frac{1}{1 + e^{-x}}<br>$$</p>
 
                 
               </div>
