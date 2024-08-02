@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zhx7723.github.io/images/W2V-NET.png">
 <meta property="article:published_time" content="2024-05-19T19:12:07.980Z">
-<meta property="article:modified_time" content="2024-08-02T19:29:12.569Z">
+<meta property="article:modified_time" content="2024-08-02T21:07:29.457Z">
 <meta property="article:author" content="Haoxue_Z">
 <meta property="article:tag" content="NLP">
 <meta property="article:tag" content="Word2Vec">
@@ -348,7 +348,7 @@
 <li><strong>输入</strong>：上下文词的集合（一个窗口内的词）。</li>
 <li><strong>输出</strong>：中心词。</li>
 </ul>
-<p>给定一个上下文（周边词），预测中间的目标词。训练目标为求出$wt$使得<br>$$<br>p(w_t|context(w_t))<br>$$<br>条件概率最大，其中当$window_size &#x3D; 3$, $wt &#x3D; \text{sits}$时<br>$$<br>context(\text{sits}) &#x3D; {\text{the}, \text{black}, \text{cat}, \text{on}, \text{the}, \text{map}}<br>$$<br>求解时：<br>$$<br>p(w_t|context(w_t)) &#x3D; max(p(w_1|context(w_t)), \dots, p(w_7|context(w_t)))<br>$$<br>模型训练时的学习目标是最大化对数似然函数：<br>$$<br>\mathcal{L}&#x3D;\sum_{t&#x3D;1}^{T}\log p(w_{t}|context(w_t))<br>$$</p>
+<p>给定一个上下文（周边词），预测中间的目标词。训练目标为求出$w_t$使得<br>$$<br>p(w_t|context(w_t))<br>$$<br>条件概率最大，其中当$window{<em>}size &#x3D; 3$, $w_t &#x3D; \text{sits}$时<br>$$<br>context(\text{sits}) &#x3D; {\text{the}, \text{black}, \text{cat}, \text{on}, \text{the}, \text{map}}<br>$$<br>求解时：<br>$$<br>p(w_t|context(w_t)) &#x3D; max(p(w_1|context(w_t)), \dots, p(w_7|context(w_t)))<br>$$<br>模型训练时的学习目标是最大化对数似然函数：<br>$$<br>\mathcal{L}&#x3D;\sum</em>{t&#x3D;1}^{T}\log p(w_{t}|context(w_t))<br>$$</p>
 <p>CBOW模型的训练可以通过以下步骤实现：</p>
 <ol>
 <li>对每个上下文词进行词嵌入（embedding）。</li>
